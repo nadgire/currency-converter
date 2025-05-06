@@ -72,9 +72,9 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-screen from-gray-900 to-gray-600 bg-gradient-to-r">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Currency Converter</h1>
+      <div className="flex flex-col items-center justify-center min-h-screen from-gray-900 to-gray-600 bg-gradient-to-r px-6">
+        <div className="flex flex-col items-center justify-center text-center">
+          <h1 className="text-4xl font-bold text-white my-10">Currency Converter</h1>
           <p className="text-lg text-white">Convert currencies easily and quickly!</p>
           <p className="text-lg text-red-600 mb-4">(Conversion rates refreshes once in 24hrs. Live rates may vary.)</p>
           {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -85,26 +85,28 @@ function App() {
             </>)
           }
 
-          <div className="flex gap-2 items-center">
-            <span className="text-white w-10 text-right">From</span>
-            <select
-              className="p-2 mb-2 border border-gray-300 rounded bg-white"
-              id="currency-convert-from-select"
-              name="currency-convert-from-select"
-              value={fromCurrency}
-              onChange={handleCurrencyChange}
-              disabled={loading || !conversionData}
-            >
-              <option value="" disabled>
-                Select Currency
-              </option>
-              {conversionData &&
-                Object.keys(conversionData).map((currency) => (
-                  <option key={currency} value={currency}>
-                    {currency}
-                  </option>
-                ))}
-            </select>
+          <div className="flex flex-col md:flex-row gap-2 items-center justify-center text-center mx-auto">
+            <div className='space-x-2 flex items-center w-full'>
+              <span className="text-white md:w-18 text-right">From</span>
+              <select
+                className="p-2 mb-2 border border-gray-300 w-28 rounded bg-white"
+                id="currency-convert-from-select"
+                name="currency-convert-from-select"
+                value={fromCurrency}
+                onChange={handleCurrencyChange}
+                disabled={loading || !conversionData}
+              >
+                <option value="" disabled>
+                  Select Currency
+                </option>
+                {conversionData &&
+                  Object.keys(conversionData).map((currency) => (
+                    <option key={currency} value={currency}>
+                      {currency}
+                    </option>
+                  ))}
+              </select>
+            </div>
 
             <input
               type="text" // Use text to better control input
@@ -117,26 +119,28 @@ function App() {
             />
           </div>
 
-          <div className="flex gap-2 items-center">
-            <span className="text-white w-10 text-right">To</span>
-            <select
-              id="currency-convert-to-select"
-              name="currency-convert-to-select"
-              className="p-2 mb-2 border border-gray-300 rounded bg-white"
-              value={toCurrency}
-              onChange={handleCurrencyChange}
-              disabled={loading || !conversionData}
-            >
-              <option value="" disabled>
-                Select Currency
-              </option>
-              {conversionData &&
-                Object.keys(conversionData).map((currency) => (
-                  <option key={currency} value={currency}>
-                    {currency}
-                  </option>
-                ))}
-            </select>
+          <div className="flex flex-col md:flex-row gap-2 items-center justify-center">
+            <div className='space-x-2 flex items-center w-full'>
+              <span className="text-white md:w-18 text-right">To</span>
+              <select
+                id="currency-convert-to-select"
+                name="currency-convert-to-select"
+                className="p-2 mb-2 border border-gray-300 w-28 rounded bg-white"
+                value={toCurrency}
+                onChange={handleCurrencyChange}
+                disabled={loading || !conversionData}
+              >
+                <option value="" disabled>
+                  Select Currency
+                </option>
+                {conversionData &&
+                  Object.keys(conversionData).map((currency) => (
+                    <option key={currency} value={currency}>
+                      {currency}
+                    </option>
+                  ))}
+              </select>
+            </div>
 
             <input
               type="text"
@@ -153,11 +157,11 @@ function App() {
           {conversionData && !loading && (
             <div className="text-white">
               <h2 className="text-2xl mb-4">Popular Conversions</h2>
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 {currencySymbols.map((currency) => (
                   <div
                     key={currency.key}
-                    className="bg-gray-800 p-4 rounded-lg shadow-md border-b w-48 h-36 flex flex-col items-center justify-center"
+                    className="bg-gray-800 p-4 rounded-lg shadow-md border-b w-48 h-36 flex flex-col items-center justify-center mx-auto"
                   >
                     <h3 className="text-xl font-bold">{currency.key}</h3>
                     <p className="text-lg">
