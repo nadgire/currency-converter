@@ -42,7 +42,8 @@ function App() {
     try {
       setLoading(true);
       setError(null);
-      const apiKey = import.meta.env.VITE_EXCHANGE_RATE_API_KEY || 'f2164116a9b2aaebc1bcf977';
+      const apiKey = import.meta.env.VITE_API_EXCHANGE_KEY;
+      console.log(apiKey);
       const result = await axios.get(
         `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`
       );
